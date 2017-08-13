@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: pdp-subdomains_development
+
+test:
+  <<: *default
+  database: pdp-subdomains_test
+
+production:
+  <<: *default
+  database: <%= ENV['PDP-SUBDOMAINS_DATABASE_NAME'] %>
+  username: <%= ENV['PDP-SUBDOMAINS_DATABASE_USERNAME'] %>
+  password: <%= ENV['PDP-SUBDOMAINS_DATABASE_PASSWORD'] %>
