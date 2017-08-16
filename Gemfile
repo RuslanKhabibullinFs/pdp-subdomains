@@ -17,6 +17,7 @@ gem "jbuilder", "~> 2.5"
 
 # Views
 gem "bootstrap-sass"
+gem "bootstrap-material-design"
 gem "simple_form"
 gem "slim"
 gem "font-awesome-sass"

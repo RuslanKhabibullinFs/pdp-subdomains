@@ -1,0 +1,11 @@
+en:
+  company_registrations:
+    create:
+      success: "Company successfully created, signed in"
+  activemodel:
+    errors:
+      models:
+        company_registration_form:
+          attributes:
+            password: 
+              confirmation_mismatch: "password confirmation mismatch"
