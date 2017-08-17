@@ -18,13 +18,11 @@ class CompanyRegistrationForm
   validates :email, presence: true, format: { with: Devise.email_regexp }
   validates :first_name, :last_name, presence: true
   validates :company_subdomain, presence: true,
-                                uniqueness: { model: Company, attribute: "subdomain" },
                                 format: { with: COMPANY_SUBDOMAIN_REGEXP },
                                 exclusion: { in: Subdomains::Base::DEFAULT_SUBDOMAINS }
-  validates :company_name, presence: true,
-                           uniqueness: { case_sensitive: false, model: Company, attribute: "name" }
-  validates :password, :password_confirmation, presence: true, length: { in: Devise.password_length }
-  validate :password_equality_check
+  validates :company_name, presence: true
+  validates :password, presence: true, length: { in: Devise.password_length }, confirmation: true
+  validate :company_unique_fields
 
   attr_reader :owner, :company
 
@@ -52,7 +50,12 @@ class CompanyRegistrationForm
     }
   end
 
-  def password_equality_check
-    errors.add(:password, :confirmation_mismatch) unless password == password_confirmation
+  def company_unique_fields
+    return unless companies_with_same_name.exists?
+    errors.add(:company_name, :already_exists)
+  end
+
+  def companies_with_same_name
+    Company.where("subdomain = ? OR lower(name) = ?", company_subdomain, company_name.downcase)
   end
 end

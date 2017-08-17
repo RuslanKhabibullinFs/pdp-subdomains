@@ -10,10 +10,10 @@ class CompanyRegistrationsController < ApplicationController
   def create
     if company_registration_form.save
       sign_in(owner)
-      return redirect_to(posts_url(subdomain: owner_company.subdomain), notice: t(".success"))
+      redirect_to(posts_url(subdomain: owner_company.subdomain), notice: t(".success"))
+    else
+      respond_with company_registration_form
     end
-
-    respond_with company_registration_form
   end
 
   private

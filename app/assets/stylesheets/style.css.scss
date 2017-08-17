@@ -1,10 +1,24 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "bootstrap-material-design";
 
+$alert-light: rgba(255, 255, 255, .84);
 $lightgrey: #f7f7f7;
+$warning-orange: #ff5722;
+$info-blue: #03a9f4;
 $white: #fff;
 $shadow-dark: rgba(0, 0, 0, .2);
 $shadow-darkest: rgba(0, 0, 0, .19);
+
+%alert-warning {
+  background-color: $warning-orange;
+  color: $alert-light;
+}
+
+%alert-info {
+  background-color: $info-blue;
+  color: $alert-light;
+}
 
 body {
   background: $lightgrey;
@@ -29,6 +43,14 @@ body {
   .btn {
     font-size: 14px;
   }
+}
+
+.alert-notice {
+  @extend %alert-info;
+}
+
+.alert-alert {
+  @extend %alert-warning;
 }
 
 

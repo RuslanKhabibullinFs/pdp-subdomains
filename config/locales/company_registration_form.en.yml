@@ -7,5 +7,5 @@ en:
       models:
         company_registration_form:
           attributes:
-            password: 
-              confirmation_mismatch: "password confirmation mismatch"
+            company_name:
+              already_exists: "Company with same name or subdomain already exists"

@@ -11,8 +11,4 @@ class ApplicationController < ActionController::Base
 
   respond_to :html
   responders :flash
-
-  def after_sign_in_path_for(_record)
-    posts_path
-  end
 end
