@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :email, presence: true,
                     format: { with: Devise.email_regexp },
                     uniqueness: { scope: :company_id }
-  validates :password, length: { in: Devise.password_length }
+  validates :password, length: { in: Devise.password_length }, confirmation: true
 
   validates :first_name, :last_name, presence: true
 
