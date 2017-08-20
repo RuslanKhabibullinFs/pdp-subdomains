@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20170815143545) do
     t.integer "company_id"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email", "company_id"], name: "index_users_on_email_and_company_id", unique: true
