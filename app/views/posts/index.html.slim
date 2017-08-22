@@ -1,4 +1,7 @@
-.col-md-offset-1.col-md-10
-  .card.component
-    .list-group
-      = render posts
+.row
+  .col-md-offset-1.col-md-10
+    = render posts
+= link_to new_post_path, class: "btn btn-danger btn-fab add-button" do
+    = icon "plus"
+
+
