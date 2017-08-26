@@ -4,6 +4,7 @@ feature "Create Company" do
   let(:company_registration_attributes) do
     attributes_for :company_registration_form, company_subdomain: "test"
   end
+  let(:company_name) { company_registration_attributes[:company_name] }
 
   background { visit new_company_registration_path }
 
@@ -18,7 +19,7 @@ feature "Create Company" do
     fill_form(:company_registration_form, company_registration_attributes)
     click_button "Create Company"
 
-    expect(page).to have_content "signed in"
-    expect(page.current_url).to eq "http://test.example.com/posts"
+    expect(page).to have_content "Log in to #{company_name}"
+    expect(page.current_url).to eq "http://test.example.com/users/sign_in"
   end
 end
