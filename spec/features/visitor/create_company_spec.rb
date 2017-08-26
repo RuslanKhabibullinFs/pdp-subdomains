@@ -20,6 +20,5 @@ feature "Create Company" do
     click_button "Create Company"
 
     expect(page).to have_content "Log in to #{company_name}"
-    expect(page.current_url).to eq "http://test.example.com/users/sign_in"
   end
 end
