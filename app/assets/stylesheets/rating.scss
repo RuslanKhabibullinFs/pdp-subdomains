@@ -9,6 +9,12 @@ $unchecked-star: "\f006";
 
   input { display: none; }
 
+  input:disabled + label {
+    &::before {
+      color: $grey;
+    }
+  }
+
   label {
     padding: 5px;
     float: right;
