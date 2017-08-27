@@ -1,0 +1,8 @@
+.dropdown.three-dots
+  a href = "#" class="dropdown-toggle dots" data-toggle="dropdown"
+    = icon("ellipsis-h")
+  ul class="dropdown-menu"
+    li
+      = link_to("Edit", edit_post_path(post))
+    li
+      = link_to("Delete", post_path(post), method: :delete, data: { confirm: "Are you sure?" })

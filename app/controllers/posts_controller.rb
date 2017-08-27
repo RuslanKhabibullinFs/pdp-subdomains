@@ -1,9 +1,11 @@
 class PostsController < ApplicationController
+  respond_to :json, only: :show
+
   before_action :authenticate_user!
   before_action :authorize_user!, only: %i[edit update destroy]
 
-  expose_decorated :posts, from: :current_company
-  expose_decorated :post, scope: -> { current_company.posts }
+  expose_decorated :posts, -> { current_company.posts.includes(:user) }
+  expose_decorated :post, scope: -> { posts }
 
   def index
   end
@@ -18,6 +20,7 @@ class PostsController < ApplicationController
   end
 
   def show
+    respond_with post
   end
 
   def edit

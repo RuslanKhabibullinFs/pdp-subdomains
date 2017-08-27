@@ -3,7 +3,9 @@
 @import "bootstrap-material-design";
 @import "font-awesome-sprockets";
 @import "font-awesome";
+@import "rating";
 
+$site-main-color: #009688;
 $alert-light: rgba(255, 255, 255, .84);
 $lightgrey: #f7f7f7;
 $warning-orange: #ff5722;
@@ -25,9 +27,7 @@ $dots-grey-darker: #a3a1a1;
   color: $alert-light;
 }
 
-.center {
-  text-align: center;
-}
+.center { text-align: center; }
 
 body {
   background: $lightgrey;
@@ -68,18 +68,12 @@ body {
     }
   }
 
-  .btn {
-    font-size: 14px;
-  }
+  .btn { font-size: 14px; }
 }
 
-.alert-notice {
-  @extend %alert-info;
-}
+.alert-notice { @extend %alert-info; }
 
-.alert-alert {
-  @extend %alert-warning;
-}
+.alert-alert { @extend %alert-warning; }
 
 .three-dots {
   position: absolute;
@@ -103,19 +97,17 @@ body {
   padding: 10px 15px;
   font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 
-  .post-author {
-    font-size: 16px;
-    font-weight: bold;
-  }
+  .post-author,
+  .post-date { font-size: 14px; }
 
   %post-title {
     color: $dark-blue;
     text-align: center;
   }
 
-  .post-content {
-    margin: 3% 0;
-  }
+  .post-content { margin: 3% 0; }
+
+  .post-rating { margin: 2% 0; }
 }
 
 .post-show {
