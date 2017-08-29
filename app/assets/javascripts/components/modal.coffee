@@ -14,7 +14,7 @@ class App.Components.Modal
  
   _bindEvents: ->
     $(document).on("app:rating:change", @_showNotification)
-    $(document).on("app:rating:error", @_showError)
+    $(document).on("app:error", @_showError)
   
   _showNotification: (_event, _postId, modalContent) =>
     @ui.content.text(modalContent)

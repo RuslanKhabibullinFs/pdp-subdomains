@@ -26,10 +26,10 @@ class App.Components.AverageRating
   _onSuccess: (postObject) =>
     averageRating = postObject["average_rating"]
     @ui.value.text(averageRating)
-    $(document).trigger("app:average_rating_fetch:success", averageRating)
+    $(document).trigger("app:rating:fetch:success", averageRating)
 
   _onFailure: (_XMLHttpRequest, _textStatus, errorThrown) ->
-    $(document).trigger("app:rating:error", errorThrown)
+    $(document).trigger("app:error", errorThrown)
 
 $ ->
   new App.Components.AverageRating($(el)) for el in $(".js-average-rating")

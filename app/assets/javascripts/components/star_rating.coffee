@@ -27,7 +27,7 @@ class App.Components.StarRating
 
   _bindListeners: ->
     @ui.radioButtons.on "change", @_sendUpdateRequest
-    $(document).on("app:average_rating_fetch:success", @_updateFilledStars)
+    $(document).on("app:rating:fetch:success", @_redrawStars)
   
   _sendUpdateRequest: (e) =>
     currentRating = e.currentTarget.value
@@ -45,9 +45,9 @@ class App.Components.StarRating
 
   _onFailure: (XMLHttpRequest) ->
     errors = $.parseJSON(XMLHttpRequest.responseText).errors
-    $(document).trigger("app:rating:error", errors)
+    $(document).trigger("app:error", errors)
 
-  _updateFilledStars: (_event, newRating) =>
+  _redrawStars: (_event, newRating) =>
     @currentRating = newRating
     @isDisabled = true
     @_initializeStars()
