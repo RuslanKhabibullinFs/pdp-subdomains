@@ -2,6 +2,10 @@ module Users
   class RegistrationsController < Devise::RegistrationsController
     protected
 
+    def build_resource(hash = nil)
+      super.tap { |user| user.company = current_company }
+    end
+
     def update_resource(resource, params)
       resource.update_attributes(params)
     end

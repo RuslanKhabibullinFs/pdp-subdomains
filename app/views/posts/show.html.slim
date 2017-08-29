@@ -11,6 +11,6 @@
         p
           | Rating:
           span class="js-rating-value" #{post.average_rating}
-      .js-star-ratings[data-post-id="#{post.id}"
+      .star-ratings.js-star-ratings[data-post-id="#{post.id}"
           data-rating="#{post.average_rating}"
           data-disabled="#{post.rated_by?(current_user)}"]

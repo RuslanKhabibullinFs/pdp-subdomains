@@ -24,7 +24,9 @@ class App.Components.AverageRating
       error: @_onFailure
 
   _onSuccess: (postObject) =>
-    @ui.value.text(postObject["average_rating"])
+    averageRating = postObject["average_rating"]
+    @ui.value.text(averageRating)
+    $(document).trigger("app:average_rating_fetch:success", averageRating)
 
   _onFailure: (_XMLHttpRequest, _textStatus, errorThrown) ->
     $(document).trigger("app:rating:error", errorThrown)

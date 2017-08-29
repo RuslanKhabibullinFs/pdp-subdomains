@@ -20,6 +20,7 @@ gem "bootstrap-sass"
 gem "bootstrap-material-design"
 gem "simple_form"
 gem "slim"
+gem "skim"
 gem "font-awesome-sass"
 
 # Other Gems
@@ -38,6 +39,7 @@ gem "seedbank"
 group :test do
   gem "capybara"
   gem "capybara-webkit"
+  gem "capybara-screenshot"
   gem "codeclimate-test-reporter", require: false
   gem "database_cleaner"
   gem "email_spec"

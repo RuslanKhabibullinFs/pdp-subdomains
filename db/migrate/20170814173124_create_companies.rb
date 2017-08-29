@@ -10,5 +10,6 @@ class CreateCompanies < ActiveRecord::Migration[5.1]
 
     add_index :companies, :name, unique: true
     add_index :companies, :subdomain, unique: true
+    add_index :companies, :owner_id
   end
 end
