@@ -18,7 +18,6 @@ class App.Components.StarRating
     @_bindListeners()
 
   _initializeStars: ->
-    @$el.empty()
     @$el.append @_generateInput(index) for index in [@config.starsCount..1]
 
   _bindUI: ->
@@ -50,6 +49,7 @@ class App.Components.StarRating
   _redrawStars: (_event, newRating) =>
     @currentRating = newRating
     @isDisabled = true
+    @$el.empty()
     @_initializeStars()
 
   _generateInput: (value) =>
