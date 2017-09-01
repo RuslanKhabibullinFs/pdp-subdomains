@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     resources :posts do
       resource :rating, only: %i[create]
     end
+    resources :users, only: %i[index] do
+      resources :posts, only: %i[index]
+    end
     root "posts#index"
   end
 

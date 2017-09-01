@@ -119,4 +119,28 @@ body {
   }
 }
 
+.user {
+  .name {
+    font-size: 24px;
+  }
+}
+
+.form-sort {
+  .apply-button {
+    margin-top: 15px;
+  }
+
+  .form-inputs {
+    margin: 10px 0;
+
+    label {
+      font-weight: 300;
+    }
+
+    select {
+      margin: 10px 0;
+    }
+  }
+}
+
 

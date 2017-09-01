@@ -1,5 +1,5 @@
 class UserDecorator < ApplicationDecorator
-  delegate :id, :first_name, :last_name, :email, :persisted?
+  delegate :id, :first_name, :last_name, :email, :rating, :posts_count, :persisted?
 
   def posts_count
     object.posts.count

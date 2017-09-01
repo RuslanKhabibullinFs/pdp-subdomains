@@ -1,6 +1,6 @@
 shared_context "current user signed in" do
   let!(:current_company) { create(:company) }
-  let(:current_user) { create(:user, company: current_company) }
+  let!(:current_user) { create(:user, company: current_company) }
 
   background do
     visit_company(current_company)
