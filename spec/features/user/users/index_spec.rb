@@ -9,24 +9,22 @@ feature "Show current company users" do
   end
 
   let!(:unpopular_user) do
-    create :user,
-      posts_count: 1,
+    create :user, :with_posts,
       company: current_company,
       rating: 2.5,
       first_name: "Unpopular",
       last_name: "User"
   end
   let!(:less_popular_user) do
-    create :user,
-      posts_count: 1,
+    create :user, :with_posts,
       company: current_company,
       rating: 3,
       first_name: "Lesspopular",
       last_name: "User"
   end
   let!(:popular_user) do
-    create :user,
-      posts_count: 2,
+    create :user, :with_posts,
+      number_of_posts: 2,
       company: current_company,
       rating: 3.5,
       first_name: "Popular",
@@ -44,7 +42,12 @@ feature "Show current company users" do
     fill_in "Filter By Rating", with: 3.5
     click_button "apply"
 
-    expect(page).to have_content("Popular User")
+    within ".user" do
+      expect(page).to have_content("Popular User")
+      expect(page).to have_content("Posts: 2")
+      expect(page).to have_content("Rating: 3.5")
+    end
+
     expect(page).not_to have_content("LessPopular User")
     expect(page).not_to have_content("Unpopular User")
   end
