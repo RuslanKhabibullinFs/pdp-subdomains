@@ -5,6 +5,10 @@ class UsersFilterQuery < BaseFilterQuery
 
   private
 
+  def default_filter(relation)
+    sort_by_rating(relation, :desc)
+  end
+
   def filter_by_rating(relation, rating)
     return relation if rating.blank?
     relation.where(rating: rating)

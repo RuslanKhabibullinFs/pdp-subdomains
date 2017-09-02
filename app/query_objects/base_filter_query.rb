@@ -10,12 +10,14 @@ class BaseFilterQuery
   end
 
   def all
+    return default_filter(relation) if sliced_params.empty?
+
     sliced_params.reduce(relation) { |relation, (key, value)| send(key.to_s, relation, value) }
   end
 
   private
 
   def sliced_params
-    filter_params.slice(*self.class::ALLOWED_PARAMS).to_h
+    filter_params.slice(*self.class::ALLOWED_PARAMS).to_h.deep_symbolize_keys
   end
 end
