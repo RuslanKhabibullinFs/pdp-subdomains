@@ -1,12 +1,17 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
-  expose_decorated :users, -> { UsersFilterQuery.new(current_company.users, filter_params).all }
+  expose :filtered_users, -> { UsersFilterQuery.new(current_company.users, filter_params).all }
+  expose_decorated :users, -> { founded_users }
 
   def index
   end
 
   private
+
+  def founded_users
+    @founded_users ||= params[:search].present? ? filtered_users.search(params[:search]) : filtered_users
+  end
 
   def filter_params
     params.permit(:filter_by_rating, sort_by: %i[option order])

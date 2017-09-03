@@ -1,0 +1,8 @@
+.row
+  .component.search-bar
+    = form_tag(users_path, method: :get) do
+      .input-group
+        = text_field_tag :search, nil, class: "form-control", placeholder: "Search for First Name, Last Name, Email"
+        span class="input-group-btn"
+          = submit_tag :search, class: "btn btn-primary search-btn"
+  end
