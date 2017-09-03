@@ -21,7 +21,7 @@ class User < ApplicationRecord
   pg_search_scope :search, against: %i[first_name last_name email],
                            using: {
                              trigram: {
-                               threshold: 0.1
+                               threshold: 0.2
                              }
                            }
 
