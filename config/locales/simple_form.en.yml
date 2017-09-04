@@ -17,3 +17,6 @@ en:
       company_registration_form:
         company_name: "Company name"
         company_subdomain: "Company subdomain"
+      post:
+        title: "Title"
+        content: "Content"

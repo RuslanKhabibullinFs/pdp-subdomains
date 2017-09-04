@@ -1,6 +1,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap-material-design";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 $alert-light: rgba(255, 255, 255, .84);
 $lightgrey: #f7f7f7;
@@ -9,6 +11,9 @@ $info-blue: #03a9f4;
 $white: #fff;
 $shadow-dark: rgba(0, 0, 0, .2);
 $shadow-darkest: rgba(0, 0, 0, .19);
+$dark-blue: #37474f;
+$dots-grey: #d1d1d1;
+$dots-grey-darker: #a3a1a1;
 
 %alert-warning {
   background-color: $warning-orange;
@@ -29,13 +34,22 @@ body {
   font-size: 16px;
 }
 
+.add-button {
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
+  width: 60px;
+  height: 60px;
+  font-size: 26px;
+}
+
 .card {
   background: $white;
   box-shadow: 0 8px 17px 0 $shadow-dark, 0 6px 20px 0 $shadow-darkest;
 }
 
 .component {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   padding: 20px;
 }
 
@@ -65,6 +79,52 @@ body {
 
 .alert-alert {
   @extend %alert-warning;
+}
+
+.three-dots {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 25px;
+
+  .dots {
+    color: $dots-grey;
+
+    &:hover {
+      color: $dots-grey-darker;
+    }
+  }
+}
+
+.post {
+  position: relative;
+  min-height: 160px;
+  margin: 0 20px;
+  padding: 10px 15px;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+
+  .post-author {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  %post-title {
+    color: $dark-blue;
+    text-align: center;
+  }
+
+  .post-content {
+    margin: 3% 0;
+  }
+}
+
+.post-show {
+  padding: 30px;
+
+  .post-content {
+    font-size: 18px;
+    line-height: 1.6;
+  }
 }
 
 

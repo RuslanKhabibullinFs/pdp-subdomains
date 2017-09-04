@@ -9,7 +9,6 @@ module PdpSubdomains
     config.i18n.load_path += Dir[Rails.root.join("config", "locales", "**", "*.{rb,yml}")]
 
     config.app_generators.scaffold_controller :responders_controller
-    config.responders.flash_keys = %i[info warning]
 
     config.load_defaults 5.1
   end

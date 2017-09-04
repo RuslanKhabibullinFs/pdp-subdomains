@@ -1,7 +1,7 @@
 en:
   company_registrations:
     create:
-      success: "Company successfully created, signed in"
+      success: "Company successfully created, please sign in to created company"
   activemodel:
     errors:
       models:

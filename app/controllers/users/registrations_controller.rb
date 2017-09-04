@@ -7,11 +7,21 @@ module Users
     end
 
     def update_resource(resource, params)
-      if params[:password].blank? & params[:password_confirmation].blank?
-        resource.update_without_password(params)
+      resource.update_attributes(params)
+    end
+
+    def account_update_params
+      params = devise_parameter_sanitizer.sanitize(:account_update)
+
+      if passwords_blank?(params)
+        params.except(:password, :password_confirmation)
       else
-        resource.update_with_password(params)
+        params
       end
+    end
+
+    def passwords_blank?(params)
+      params[:password].blank? && params[:password_confirmation].blank?
     end
   end
 end

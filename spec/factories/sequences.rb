@@ -4,4 +4,6 @@ FactoryGirl.define do
   sequence(:last_name) { Faker::Name.last_name }
   sequence(:company_name) { Faker::Company.name }
   sequence(:company_subdomain) { Faker::Internet.domain_word }
+  sequence(:post_title) { Faker::Lorem.sentence }
+  sequence(:post_content) { Faker::Lorem.sentence }
 end

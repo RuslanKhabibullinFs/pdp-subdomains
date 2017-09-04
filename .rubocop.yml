@@ -70,3 +70,6 @@ RSpec/MultipleExpectations:
 
 RSpec/ExampleLength:
   Max: 10
+
+RSpec/LetSetup:
+  Enabled: false

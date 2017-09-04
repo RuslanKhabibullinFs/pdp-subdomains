@@ -1,0 +1,8 @@
+.card.component
+  .post.post-show
+    p class="post-author" = post.user_full_name
+    p = post.formatted_creation_date
+    h1 class="post-show-title" = post.title
+    .post-content
+      = post.content
+
