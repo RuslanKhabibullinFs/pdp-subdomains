@@ -18,6 +18,13 @@ SimpleForm.setup do |config|
     b.use :hint,  wrap_with: { tag: "p", class: "help-block" }
   end
 
+  config.wrappers :inline_checkbox, tag: "div", class: "form-group custom-checkbox", error_class: "has-error" do |b|
+    b.use :html5
+    b.use :label_input, wrap_with: { class: "checkbox-inline" }
+    b.use :error, wrap_with: { tag: "span", class: "help-block" }
+    b.use :hint,  wrap_with: { tag: "p", class: "help-block" }
+  end
+
   config.wrappers :vertical_file_input, tag: "div", class: "form-group", error_class: "has-error" do |b|
     b.use :html5
     b.use :placeholder

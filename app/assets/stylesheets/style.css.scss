@@ -20,6 +20,10 @@ $shadow-darkest: rgba(0, 0, 0, .19);
   color: $alert-light;
 }
 
+.center {
+  text-align: center;
+}
+
 body {
   background: $lightgrey;
   font-size: 16px;
@@ -35,10 +39,20 @@ body {
   padding: 20px;
 }
 
-.company-registration-form {
+.base-form {
   width: 80%;
   margin: 15px auto 0;
   padding: 15px;
+
+  .custom-checkbox {
+    margin-top: 8%;
+
+    label {
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: normal;
+    }
+  }
 
   .btn {
     font-size: 14px;
