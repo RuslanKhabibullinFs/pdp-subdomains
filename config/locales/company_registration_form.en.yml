@@ -1,0 +1,11 @@
+en:
+  company_registrations:
+    create:
+      success: "Company successfully created, signed in"
+  activemodel:
+    errors:
+      models:
+        company_registration_form:
+          attributes:
+            company_name:
+              already_exists: "Company with same name or subdomain already exists"

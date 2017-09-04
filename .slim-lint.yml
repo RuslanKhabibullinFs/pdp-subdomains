@@ -26,15 +26,15 @@ linters:
       - Lint/Void
       - Metrics/LineLength
       - Style/AlignHash
-      - Style/AlignParameters
+      - Layout/AlignParameters
       - Style/BlockNesting
       - Style/FileName
       - Style/FirstParameterIndentation
       - Style/IfUnlessModifier
       - Style/IndentationConsistency
-      - Style/IndentationWidth
+      - Layout/IndentationWidth
       - Style/Next
-      - Style/TrailingBlankLines
+      - Layout/TrailingBlankLines
       - Style/TrailingWhitespace
       - Style/WhileUntilModifier
       - Style/NestedTernaryOperator

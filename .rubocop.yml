@@ -60,3 +60,10 @@ Style/FrozenStringLiteralComment:
 
 Style/StringMethods:
   Enabled: true
+
+Metrics/MethodLength:
+  Enabled: true
+  Max: 12
+
+RSpec/MultipleExpectations:
+  Enabled: false
