@@ -20,6 +20,8 @@ engines:
     checks:
       Rubocop/Style/PercentLiteralDelimiters:
         enabled: false
+      Rubocop/Lint/AmbiguousBlockAssociation:
+        enabled: false
 ratings:
   paths:
   - Gemfile.lock

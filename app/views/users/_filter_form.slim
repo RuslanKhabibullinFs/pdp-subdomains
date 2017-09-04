@@ -1,0 +1,14 @@
+.card.component
+  = form_tag(users_path, method: :get, class: "form form-sort") do
+    .form-inputs
+      = label_tag :filter_by_rating, "Filter By Rating:"
+      = number_field_tag :filter_by_rating, nil, in: 0..5, step: 0.1, class: "form-control"
+    .form-inputs
+      = label_tag :sort_by, "Sort by:"
+      = fields_for :sort_by do |ff|
+        = ff.select :option,  options_for_select(%w[rating posts]), {}, class: "form-control"
+        = ff.select :order, options_for_select(%w[desc asc]), {}, class: "form-control"
+
+    .form-actions
+      = submit_tag :apply, class: "btn btn-primary apply-button"
+  end
