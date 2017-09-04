@@ -5,4 +5,12 @@
     h1 class="post-show-title" = post.title
     .post-content
       = post.content
-
+    hr
+    .post-rating
+      .js-average-rating
+        p
+          | Rating:
+          span class="js-rating-value" #{post.average_rating}
+      .star-ratings.js-star-ratings[data-post-id="#{post.id}"
+          data-rating="#{post.average_rating}"
+          data-disabled="#{post.rated_by?(current_user)}"]

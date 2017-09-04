@@ -1,7 +1,7 @@
 class PostDecorator < ApplicationDecorator
   decorates_association :user
 
-  delegate :title, :content
+  delegate :id, :title, :content, :average_rating
   delegate :full_name, to: :user, prefix: true
 
   def content_preview
@@ -10,5 +10,9 @@ class PostDecorator < ApplicationDecorator
 
   def formatted_creation_date
     object.created_at.strftime("%d-%m-%Y")
+  end
+
+  def rated_by?(user)
+    object.ratings.exists?(user_id: user.id)
   end
 end

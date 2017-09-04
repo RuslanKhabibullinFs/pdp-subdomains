@@ -1,0 +1,5 @@
+- if @disabled
+  input id="#{@inputId}" type="radio" name="rating" value="#{@value}" disabled="true"
+- else
+  input id="#{@inputId}" type="radio" name="rating" value="#{@value}"
+label for="#{@inputId}" class="#{@labelClass}"

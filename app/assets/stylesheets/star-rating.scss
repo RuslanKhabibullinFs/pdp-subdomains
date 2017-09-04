@@ -1,0 +1,59 @@
+$star-color: #009688;
+$grey: #444;
+$half-checked-star: "\f089";
+$checked-star: "\f005";
+$unchecked-star: "\f006";
+
+.star-ratings {
+  width: 165px;
+
+  input { display: none; }
+
+  input:disabled + label {
+    &::before {
+      color: $grey;
+    }
+  }
+
+  label {
+    padding: 5px;
+    float: right;
+    transition: all .2s;
+    color: $grey;
+    font-family: FontAwesome;
+    font-size: 24px;
+    font-weight: 300;
+  }
+
+  %star {
+    &:hover { transform: scale(1.3); }
+  }
+
+  .half-checked-star {
+    @extend %star;
+
+    &::before {
+      color: $star-color;
+      content: $half-checked-star;
+    }
+  }
+
+  .checked-star {
+    @extend %star;
+
+    &::before {
+      transition: all .25s;
+      color: $star-color;
+      content: $checked-star;
+    }
+  }
+
+  .unchecked-star {
+    @extend %star;
+
+
+    &::before {
+      content: $unchecked-star;
+    }
+  }
+}

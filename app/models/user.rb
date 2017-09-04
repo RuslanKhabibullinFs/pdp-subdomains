@@ -4,6 +4,7 @@ class User < ApplicationRecord
 
   has_many :companies, foreign_key: :owner_id, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :ratings, dependent: :destroy
   belongs_to :company, optional: true
 
   validates :email, presence: true,

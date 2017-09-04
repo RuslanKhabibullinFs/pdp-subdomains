@@ -19,5 +19,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
 
     add_index :users, %i[email company_id], unique: true
     add_index :users, :reset_password_token, unique: true
+    add_index :users, :company_id
   end
 end
