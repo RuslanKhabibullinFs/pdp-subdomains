@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  include PgSearch
+
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, request_keys: %i[subdomain]
 
@@ -15,6 +17,13 @@ class User < ApplicationRecord
   validates :password, length: { in: Devise.password_length }, allow_blank: true
 
   validates :first_name, :last_name, presence: true
+
+  pg_search_scope :search, against: %i[first_name last_name email],
+                           using: {
+                             trigram: {
+                               threshold: 0.2
+                             }
+                           }
 
   def self.find_for_authentication(warden_conditions)
     company = Company.find_by(subdomain: warden_conditions[:subdomain])
