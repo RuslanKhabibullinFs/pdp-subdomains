@@ -14,7 +14,7 @@ class App.Components.AverageRating
       value: @$el.find(@config.valueClass)
  
   _bindEvents: ->
-    $(document).on("app:rating:change", @_updateAverageRating)
+    $(document).on("app:rating:fetch", @_updateAverageRating)
   
   _updateAverageRating: (_event, postId) =>
     $.ajax
@@ -29,7 +29,7 @@ class App.Components.AverageRating
     $(document).trigger("app:rating:fetch:success", averageRating)
 
   _onFailure: (_XMLHttpRequest, _textStatus, errorThrown) ->
-    $(document).trigger("app:error", errorThrown)
+    $(document).trigger("app:modal:error", errorThrown)
 
 $ ->
   new App.Components.AverageRating($(el)) for el in $(".js-average-rating")

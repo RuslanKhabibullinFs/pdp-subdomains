@@ -13,10 +13,10 @@ class App.Components.Modal
       content: @$el.find(@config.content)
  
   _bindEvents: ->
-    $(document).on("app:rating:change", @_showNotification)
-    $(document).on("app:error", @_showError)
+    $(document).on("app:modal:notify", @_showNotification)
+    $(document).on("app:modal:error", @_showError)
   
-  _showNotification: (_event, _postId, modalContent) =>
+  _showNotification: (_event, modalContent) =>
     @ui.content.text(modalContent)
     @$el.modal("show")
 

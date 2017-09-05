@@ -25,22 +25,26 @@ class App.Components.StarRating
       radioButtons: @$el.find "input[type='radio']"
 
   _bindListeners: ->
-    @ui.radioButtons.on "change", @_sendUpdateRequest
+    @ui.radioButtons.on "change", @_updateStars
     $(document).on("app:rating:fetch:success", @_redrawStars)
   
-  _sendUpdateRequest: (e) =>
+  _updateStars: (e) =>
+    parent.$("body").append(JST["templates/spinner/spinner"])
     currentRating = e.currentTarget.value
+    @_sendUpdateRequest(currentRating)
+
+  _sendUpdateRequest: (rating)=>
     $.ajax
       type: "POST"
       url: @config.ratingUrl.replace ":post-id", @currentPostId
       data:
         rating:
-          rating: currentRating
+          rating: rating
       success:  @_onSuccess
       error: @_onFailure
 
   _onSuccess: =>
-    $(document).trigger("app:rating:change", [@currentPostId, "Thanks for your feedback"])
+    $(document).trigger("app:rating:fetch", @currentPostId)
 
   _onFailure: (XMLHttpRequest) ->
     errors = $.parseJSON(XMLHttpRequest.responseText).errors
@@ -49,8 +53,12 @@ class App.Components.StarRating
   _redrawStars: (_event, newRating) =>
     @currentRating = newRating
     @isDisabled = true
+
     @$el.empty()
     @_initializeStars()
+
+    parent.$(".spinner").remove()
+    $(document).trigger("app:modal:notify", "Thanks for your feedback")
 
   _generateInput: (value) =>
     JST["templates/star/input"](
