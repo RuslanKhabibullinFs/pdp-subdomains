@@ -1,6 +1,4 @@
-App.Components ||= {}
-
-class App.Components.AverageRating
+class App.Components.AverageRating extends App.Components.Base
   config:
     valueClass: ".js-rating-value"
     postUrl: "/posts/:post-id.json"
@@ -32,4 +30,5 @@ class App.Components.AverageRating
     $(document).trigger("app:modal:error", errorThrown)
 
 $ ->
-  new App.Components.AverageRating($(el)) for el in $(".js-average-rating")
+  if $(".js-average-rating").length
+    new App.Components.AverageRating($(el)) for el in $(".js-average-rating")
