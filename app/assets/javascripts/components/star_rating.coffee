@@ -1,6 +1,4 @@
-App.Components ||= {}
-
-class App.Components.StarRating
+class App.Components.StarRating extends App.Components.Base
   config:
     starsCount: 5
     input: "js-rating-:post-id"
@@ -47,8 +45,9 @@ class App.Components.StarRating
     $(document).trigger("app:rating:fetch", @currentPostId)
 
   _onFailure: (XMLHttpRequest) ->
+    parent.$(".spinner").remove()
     errors = $.parseJSON(XMLHttpRequest.responseText).errors
-    $(document).trigger("app:error", errors)
+    $(document).trigger("app:modal:error", errors)
 
   _redrawStars: (_event, newRating) =>
     @currentRating = newRating
@@ -83,4 +82,5 @@ class App.Components.StarRating
     "#{firstPartId}-#{value}"
 
 $ ->
-  new App.Components.StarRating($(el)) for el in $(".js-star-ratings")
+  if $(".js-star-ratings").length
+    new App.Components.StarRating($(el)) for el in $(".js-star-ratings")

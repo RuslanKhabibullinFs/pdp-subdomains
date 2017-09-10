@@ -1,6 +1,4 @@
-App.Components ||= {}
-
-class App.Components.Modal
+class App.Components.Modal extends App.Components.Base
   config:
     content: ".js-modal-content"
 
