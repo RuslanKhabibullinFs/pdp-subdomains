@@ -3,14 +3,20 @@ describe "App.Components.StarRating", ->
     loadFixtures("star_rating.html")
     @$ratingsElement = $(".js-star-ratings")
     @component = new App.Components.StarRating(@$ratingsElement)
+
+  afterEach ->
+    $(document).off()
+    @$ratingsElement.remove()
   
   describe "#constructor", ->
     beforeEach ->
       @$uncheckedStar = $(".unchecked-star")
       @$checkedStar = $(".checked-star")
 
-    it "initialize star inputs with right attributes", ->
+    it "initialize unchecked star inputs", ->
       expect(@$uncheckedStar.length).toEqual(2)
+
+    it "initialize checked star inputs", ->
       expect(@$checkedStar.length).toEqual(3)
 
   describe "click on .js-rating", ->
