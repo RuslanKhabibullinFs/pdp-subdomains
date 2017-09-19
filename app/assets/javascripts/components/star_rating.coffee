@@ -7,22 +7,20 @@ class App.Components.StarRating extends App.Components.Base
     halfCheckedStar: "half-checked-star"
     uncheckedStar: "unchecked-star"
 
-  constructor: (@$el) ->
+  initialize: ->
     @currentPostId = @$el.data("post-id")
     @currentRating = @$el.data("rating") || 0
     @isDisabled = @$el.data("disabled")
     @_initializeStars()
-    @_bindUI()
-    @_bindListeners()
 
   _initializeStars: ->
     @$el.append @_generateInput(index) for index in [@config.starsCount..1]
 
-  _bindUI: ->
+  bindUI: ->
     @ui =
       radioButtons: @$el.find "input[type='radio']"
 
-  _bindListeners: ->
+  bindListeners: ->
     @ui.radioButtons.on "change", @_updateStars
     $(document).on("app:rating:fetch:success", @_redrawStars)
   
@@ -82,5 +80,4 @@ class App.Components.StarRating extends App.Components.Base
     "#{firstPartId}-#{value}"
 
 $ ->
-  if $(".js-star-ratings").length
-    new App.Components.StarRating($(el)) for el in $(".js-star-ratings")
+  new App.Components.StarRating($(el)) for el in $(".js-star-ratings")

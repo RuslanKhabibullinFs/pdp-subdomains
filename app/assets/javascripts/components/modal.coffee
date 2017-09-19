@@ -1,16 +1,12 @@
 class App.Components.Modal extends App.Components.Base
   config:
     content: ".js-modal-content"
-
-  constructor: (@$el) ->
-    @_bindUi()
-    @_bindEvents()
  
-  _bindUi: ->
+  bindUI: ->
     @ui =
       content: @$el.find(@config.content)
  
-  _bindEvents: ->
+  bindListeners: ->
     $(document).on("app:modal:notify", @_showNotification)
     $(document).on("app:modal:error", @_showError)
   

@@ -3,12 +3,16 @@ class Component
     @el = el
     @$el = $(el)
     @initialize()
-    @bindings()
+    @bindUI()
+    @bindListeners()
 
   initialize: ->
     #template method
 
-  bindings: ->
+  bindUI: ->
+    #template method
+
+  bindListeners: ->
     #template method
 
 window.App = {}

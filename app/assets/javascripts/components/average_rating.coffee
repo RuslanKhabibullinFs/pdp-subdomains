@@ -2,16 +2,12 @@ class App.Components.AverageRating extends App.Components.Base
   config:
     valueClass: ".js-rating-value"
     postUrl: "/posts/:post-id.json"
-
-  constructor: (@$el) ->
-    @_bindUi()
-    @_bindEvents()
  
-  _bindUi: ->
+  bindUI: ->
     @ui =
       value: @$el.find(@config.valueClass)
  
-  _bindEvents: ->
+  bindListeners: ->
     $(document).on("app:rating:fetch", @_updateAverageRating)
   
   _updateAverageRating: (_event, postId) =>
@@ -30,5 +26,4 @@ class App.Components.AverageRating extends App.Components.Base
     $(document).trigger("app:modal:error", errorThrown)
 
 $ ->
-  if $(".js-average-rating").length
-    new App.Components.AverageRating($(el)) for el in $(".js-average-rating")
+  new App.Components.AverageRating($(el)) for el in $(".js-average-rating")
