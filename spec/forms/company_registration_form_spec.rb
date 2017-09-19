@@ -20,38 +20,10 @@ describe CompanyRegistrationForm do
   it { is_expected.to respond_to(:password_confirmation) }
   it { is_expected.to respond_to(:company_name) }
   it { is_expected.to respond_to(:company_subdomain) }
+  it { is_expected.to respond_to(:owner) }
+  it { is_expected.to respond_to(:company) }
 
   it { is_expected.to be_valid }
-
-  describe "password" do
-    context "when confirmation mismatch" do
-      before { company_registration_form.password_confirmation = "mismatch" }
-
-      it { is_expected.not_to be_valid }
-    end
-  end
-
-  describe "company_name" do
-    context "when company with same name already exists" do
-      before { create :company, name: "TestCompany" }
-
-      it { is_expected.not_to be_valid }
-    end
-  end
-
-  describe "company_subdomain" do
-    context "when invalid subdomain" do
-      before { company_registration_form.company_subdomain = "InvalidSubdomain" }
-
-      it { is_expected.not_to be_valid }
-    end
-
-    context "when subdomain already exists" do
-      before { create :company, subdomain: "test_company" }
-
-      it { is_expected.not_to be_valid }
-    end
-  end
 
   describe "save" do
     context "when is invalid" do
@@ -61,9 +33,20 @@ describe CompanyRegistrationForm do
     end
 
     context "when exception raise during transaction" do
+      let(:owner) { company_registration_form.owner }
+
       before { allow(User).to receive(:create!).and_raise(ActiveRecord::RecordInvalid) }
 
       it { expect(company_registration_form.save).to be_falsey }
+    end
+
+    context "when form is valid" do
+      let(:owner) { company_registration_form.owner }
+
+      before { company_registration_form.save }
+
+      it { expect(owner.persisted?).to be_truthy }
+      it { expect(owner.company).to be_truthy }
     end
   end
 end

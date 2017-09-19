@@ -4,7 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
     :recoverable, :rememberable, request_keys: %i[subdomain]
 
-  has_many :companies, foreign_key: :owner_id, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :ratings, dependent: :destroy
   belongs_to :company, optional: true

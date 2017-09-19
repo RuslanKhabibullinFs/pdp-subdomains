@@ -11,34 +11,53 @@ class CompanyRegistrationForm
     company_subdomain
   ].freeze
 
-  COMPANY_SUBDOMAIN_REGEXP = /\A[a-z0-9_]+\z/
-
   attr_accessor(*ATTRIBUTES)
 
-  validates :email, presence: true, format: { with: Devise.email_regexp }
-  validates :first_name, :last_name, presence: true
-  validates :company_subdomain, presence: true,
-                                format: { with: COMPANY_SUBDOMAIN_REGEXP },
-                                exclusion: { in: SubdomainConstraint::DEFAULT_SUBDOMAINS }
-  validates :company_name, presence: true
-  validates :password, presence: true, length: { in: Devise.password_length }, confirmation: true
-  validate :company_unique_fields
-
-  attr_reader :owner, :company
-
   def save
-    return false unless valid?
+    return invalidate_form unless form_valid?
 
     ActiveRecord::Base.transaction do
-      @owner = User.create! user_params
-      @company = owner.companies.create!(name: company_name, subdomain: company_subdomain)
-      owner.update_attributes!(company_id: company.id)
+      @owner = User.create!(user_params)
+      # after create_company! user.company association initialized locally ((
+      @company = owner.create_company!(name: company_name, subdomain: company_subdomain, owner: owner)
+      owner.save!
     end
-  rescue
+  rescue ActiveRecord::ActiveRecordError
     false
   end
 
+  def owner
+    @owner ||= User.new(user_params)
+  end
+
+  def company
+    @company ||= Company.new(name: company_name, subdomain: company_subdomain)
+  end
+
   private
+
+  def invalidate_form
+    set_onwer_errors unless owner.valid?
+    set_company_errors unless company.valid?
+
+    false
+  end
+
+  def set_onwer_errors
+    owner.errors.each do |field, error|
+      errors.add(field, error)
+    end
+  end
+
+  def set_company_errors
+    company.errors.each do |field, error|
+      errors.add("company_#{field}".to_sym, error)
+    end
+  end
+
+  def form_valid?
+    valid? && owner.valid? && company.valid?
+  end
 
   def user_params
     {
@@ -48,14 +67,5 @@ class CompanyRegistrationForm
       password: password,
       password_confirmation: password_confirmation
     }
-  end
-
-  def company_unique_fields
-    return unless companies_with_same_name.exists?
-    errors.add(:company_name, :already_exists)
-  end
-
-  def companies_with_same_name
-    Company.where("subdomain = ? OR lower(name) = ?", company_subdomain, company_name.downcase)
   end
 end
