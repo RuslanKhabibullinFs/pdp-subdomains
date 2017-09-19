@@ -9,7 +9,6 @@ describe User, type: :model do
   it { is_expected.to respond_to(:password) }
   it { is_expected.to respond_to(:password_confirmation) }
   it { is_expected.to respond_to(:company) }
-  it { is_expected.to respond_to(:companies) }
 
   it { is_expected.to be_valid }
 
