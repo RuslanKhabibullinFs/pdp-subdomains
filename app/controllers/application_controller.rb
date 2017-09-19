@@ -14,6 +14,7 @@ class ApplicationController < ActionController::Base
   expose(:current_company) { Company.find_by!(subdomain: request_subdomain) }
 
   before_action :validates_subdomain
+  before_action :authenticate_user!
 
   protect_from_forgery with: :exception
 

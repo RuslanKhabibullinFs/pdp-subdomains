@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
   respond_to :json, only: :show
 
-  before_action :authenticate_user!
   before_action :authorize_user!, only: %i[edit update destroy]
 
   expose :user, id: :user_id, parent: :current_company
