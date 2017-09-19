@@ -3,8 +3,7 @@ class PostsController < ApplicationController
 
   before_action :authorize_user!, only: %i[edit update destroy]
 
-  expose :user, id: :user_id, parent: :current_company
-  expose_decorated :posts, -> { filtered_posts.includes(:user) }
+  expose_decorated :posts, -> { current_company.posts.includes(:user) }
   expose_decorated :post, scope: -> { posts }
 
   def index
@@ -40,10 +39,6 @@ class PostsController < ApplicationController
 
   def authorize_user!
     authorize(post, :manage?)
-  end
-
-  def filtered_posts
-    @filtered_posts ||= user.persisted? ? current_company.posts.where(user: user) : current_company.posts
   end
 
   def post_params

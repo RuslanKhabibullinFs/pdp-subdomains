@@ -1,0 +1,13 @@
+.card.component
+  .post
+    p class="post-author" = post.user_full_name
+    p class="post-date"= post.formatted_creation_date
+    h2 = link_to post.title, post_path(post)
+    .post-content
+      = post.content_preview
+    hr
+    .post-rating
+      span Rating: #{post.average_rating}
+
+  - if policy(post).manage?
+      = render "posts/post_settings_dots", post: post
