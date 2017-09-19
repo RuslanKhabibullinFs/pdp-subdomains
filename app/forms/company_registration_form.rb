@@ -19,7 +19,7 @@ class CompanyRegistrationForm
   validates :first_name, :last_name, presence: true
   validates :company_subdomain, presence: true,
                                 format: { with: COMPANY_SUBDOMAIN_REGEXP },
-                                exclusion: { in: Subdomains::Base::DEFAULT_SUBDOMAINS }
+                                exclusion: { in: SubdomainConstraint::DEFAULT_SUBDOMAINS }
   validates :company_name, presence: true
   validates :password, presence: true, length: { in: Devise.password_length }, confirmation: true
   validate :company_unique_fields
