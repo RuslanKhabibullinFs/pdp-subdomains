@@ -1,4 +1,6 @@
 class CompanyRegistrationsController < ApplicationController
+  skip_before_action :authenticate_user!
+
   expose(:company_registration_form)
 
   delegate :owner, to: :company_registration_form

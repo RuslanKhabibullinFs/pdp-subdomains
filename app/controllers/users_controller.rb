@@ -1,6 +1,4 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
-
   expose :filtered_users, -> { UsersFilterQuery.new(current_company.users, filter_params).all }
   expose_decorated :users, -> { founded_users }
 

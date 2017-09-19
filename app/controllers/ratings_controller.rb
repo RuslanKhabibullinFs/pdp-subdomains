@@ -1,6 +1,4 @@
 class RatingsController < ApplicationController
-  before_action :authenticate_user!
-
   respond_to :json
 
   expose :post, scope: -> { current_company.posts }
