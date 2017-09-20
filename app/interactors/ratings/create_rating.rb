@@ -5,14 +5,14 @@ module Ratings
     delegate :user, :post, :rating_params, to: :context
 
     def call
-      context.rating = user.ratings.build(post: post, rating: rating_value)
+      context.rating = user.ratings.build(post: post, score: score)
       context.fail! unless context.rating.save
     end
 
     private
 
-    def rating_value
-      rating_params[:rating]
+    def score
+      rating_params[:score]
     end
   end
 end

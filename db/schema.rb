@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170903133116) do
+ActiveRecord::Schema.define(version: 20170920141508) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20170903133116) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_companies_on_name", unique: true
+    t.index ["owner_id"], name: "index_companies_on_owner_id"
     t.index ["subdomain"], name: "index_companies_on_subdomain", unique: true
   end
 
@@ -41,7 +42,7 @@ ActiveRecord::Schema.define(version: 20170903133116) do
   create_table "ratings", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "post_id", null: false
-    t.integer "rating", default: 0, null: false
+    t.integer "score", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_ratings_on_post_id"
@@ -62,6 +63,7 @@ ActiveRecord::Schema.define(version: 20170903133116) do
     t.datetime "updated_at", null: false
     t.float "rating", default: 0.0, null: false
     t.integer "posts_count", default: 0, null: false
+    t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["email", "company_id"], name: "index_users_on_email_and_company_id", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

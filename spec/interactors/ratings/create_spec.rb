@@ -7,8 +7,7 @@ describe Ratings::Create do
     let(:expected_interactors) do
       [
         Ratings::CreateRating,
-        Ratings::CalculatePostAverageRating,
-        Ratings::CalculateUserRating
+        Ratings::CalculateAverageRating
       ]
     end
 

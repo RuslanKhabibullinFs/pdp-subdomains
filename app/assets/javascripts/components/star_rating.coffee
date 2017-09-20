@@ -35,7 +35,7 @@ class App.Components.StarRating extends App.Components.Base
       url: @config.ratingUrl.replace ":post-id", @currentPostId
       data:
         rating:
-          rating: rating
+          score: rating
       success:  @_onSuccess
       error: @_onFailure
 
