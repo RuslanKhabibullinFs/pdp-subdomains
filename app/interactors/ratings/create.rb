@@ -2,6 +2,6 @@ module Ratings
   class Create
     include Interactor::Organizer
 
-    organize CreateRating, CalculatePostAverageRating, CalculateUserRating
+    organize CreateRating, CalculateAverageRating
   end
 end

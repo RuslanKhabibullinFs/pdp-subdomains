@@ -16,7 +16,7 @@ feature "Rate post by company user", js: true do
 
   context "when user already rate same post" do
     before do
-      create(:rating, user: current_user, post: post, rating: 2)
+      create(:rating, user: current_user, post: post, score: 2)
       post.update(average_rating: 2)
       visit_company(current_company, post_path(post))
     end
