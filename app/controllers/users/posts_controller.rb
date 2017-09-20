@@ -3,15 +3,9 @@ module Users
     respond_to :json, only: :show
 
     expose :user, parent: :current_company
-    expose_decorated :posts, -> { user_posts }
+    expose_decorated :posts, from: :user
 
     def index
-    end
-
-    private
-
-    def user_posts
-      @user_posts ||= current_company.posts.where(user: user).includes(:user)
     end
   end
 end
