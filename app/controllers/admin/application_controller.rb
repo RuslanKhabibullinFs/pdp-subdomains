@@ -1,15 +1,13 @@
 module Admin
   class ApplicationController < Administrate::ApplicationController
+    include Authorization
+    include CurrentCompanyExposer
+
     before_action :authenticate_user!
     before_action :authenticate_admin
 
-    delegate :subdomain, to: :request, prefix: true
-
-    expose(:current_company) { Company.find_by!(subdomain: request_subdomain) }
-
     def authenticate_admin
-      return if current_company.owner == current_user
-      redirect_to root_path
+      authorize(current_company, :manage?)
     end
 
     def index
