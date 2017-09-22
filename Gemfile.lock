@@ -44,6 +44,17 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.1)
       public_suffix (~> 2.0, >= 2.0.2)
+    administrate (0.8.1)
+      actionpack (>= 4.2, < 5.2)
+      actionview (>= 4.2, < 5.2)
+      activerecord (>= 4.2, < 5.2)
+      autoprefixer-rails (>= 6.0)
+      datetime_picker_rails (~> 0.0.7)
+      jquery-rails (>= 4.0)
+      kaminari (>= 1.0)
+      momentjs-rails (~> 2.8)
+      sass-rails (~> 5.0)
+      selectize-rails (~> 0.6)
     arel (8.0.0)
     ast (2.3.0)
     autoprefixer-rails (7.1.2.6)
@@ -95,6 +106,8 @@ GEM
       json
     concurrent-ruby (1.0.5)
     database_cleaner (1.6.1)
+    datetime_picker_rails (0.0.7)
+      momentjs-rails (>= 2.8.1)
     decent_decoration (0.1.0)
       decent_exposure (~> 3.0)
     decent_exposure (3.0.2)
@@ -187,6 +200,8 @@ GEM
     mime-types-data (3.2016.0521)
     mini_portile2 (2.2.0)
     minitest (5.10.3)
+    momentjs-rails (2.17.1)
+      railties (>= 3.1)
     multi_json (1.12.1)
     nio4r (2.1.0)
     nokogiri (1.8.0)
@@ -291,6 +306,7 @@ GEM
       rake (>= 0.9, < 13)
       sass (~> 3.4.20)
     seedbank (0.4.0)
+    selectize-rails (0.12.4)
     selenium-webdriver (3.5.1)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
@@ -367,6 +383,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  administrate (~> 0.8.1)
   bootstrap-material-design
   bootstrap-sass
   brakeman

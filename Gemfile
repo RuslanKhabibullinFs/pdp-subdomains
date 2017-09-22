@@ -16,6 +16,9 @@ gem "turbolinks", "~> 5"
 gem "jbuilder", "~> 2.5"
 gem "pg_search"
 
+# Admin
+gem "administrate", "~> 0.8.1"
+
 # Views
 gem "bootstrap-sass"
 gem "bootstrap-material-design"
