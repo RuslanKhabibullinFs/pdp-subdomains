@@ -1,0 +1,8 @@
+nav.navigation[role="navigation"]
+  - Administrate::Namespace.new(namespace).resources.each do |resource|
+    - if resource.to_s == "companies"
+      = link_to("Company", admin_company_path(current_company), 
+          class:  "navigation__link navigation__link--#{nav_link_state(resource)}")
+    - else
+      = link_to(display_resource_name(resource), [namespace, resource.path],
+          class: "navigation__link navigation__link--#{nav_link_state(resource)}")
