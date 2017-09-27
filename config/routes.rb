@@ -2,6 +2,14 @@ Rails.application.routes.draw do
   resource :company_registration, only: %i[new create]
 
   constraints(SubdomainConstraint) do
+    namespace :admin do
+      resources :users, only: %i[show index]
+      resources :posts
+      resources :companies, only: %i[edit show update destroy]
+
+      root to: "users#index"
+    end
+
     devise_for :users, controllers: { registrations: "users/registrations" }
     resources :posts do
       resource :rating, only: %i[create]
