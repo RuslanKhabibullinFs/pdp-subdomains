@@ -56,7 +56,7 @@ class CompanyRegistrationForm
   end
 
   def form_valid?
-    valid? && owner.valid? && company.valid?
+    owner.valid? && company.valid?
   end
 
   def user_params

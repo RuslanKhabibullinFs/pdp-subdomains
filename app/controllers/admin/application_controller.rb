@@ -38,5 +38,9 @@ module Admin
     def search_term
       params[:search].to_s.strip
     end
+
+    def show_search_bar?
+      false
+    end
   end
 end

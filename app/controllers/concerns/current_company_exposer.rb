@@ -18,5 +18,3 @@ module CurrentCompanyExposer
     request_subdomain.empty? || SubdomainConstraint::DEFAULT_SUBDOMAINS.include?(request_subdomain)
   end
 end
-
-

@@ -12,7 +12,7 @@ class PostDashboard < Administrate::BaseDashboard
     average_rating: Field::Number.with_options(decimals: 2)
   }.freeze
 
-  COLLECTION_ATTRIBUTES = %i[company user id average_rating].freeze
+  COLLECTION_ATTRIBUTES = %i[company title user id average_rating].freeze
 
   SHOW_PAGE_ATTRIBUTES = %i[company user id title content created_at updated_at average_rating].freeze
 
